@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "Copy asciimoji to use anywhere",
+    "name": "Asciimoji",
     "slug": "asciimoji-app",
     "privacy": "public",
     "sdkVersion": "32.0.0",
@@ -9,10 +9,10 @@
       "android"
     ],
     "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "orientation": "default",
+    "icon": "./assets/appicon@1x.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/splash@3x.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },

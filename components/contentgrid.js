@@ -60,6 +60,7 @@ export default Emojigrid;
 const styles = StyleSheet.create({
   gridView: {
     marginTop: 0,
+    marginBottom: 400,
     flex: 1
   },
   itemContainer: {

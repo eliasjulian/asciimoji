@@ -1,5 +1,5 @@
 import React from "react";
-import { ScrollView } from "react-native";
+import { ScrollView, TouchableOpacity } from "react-native";
 import styled from "styled-components";
 import SvgUri from "react-native-svg-uri";
 import Emojigrid from "./components/contentgrid";

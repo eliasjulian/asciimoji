@@ -1,5 +1,12 @@
 import React, { Component } from "react";
-import { StyleSheet, View, Text } from "react-native";
+import {
+  StyleSheet,
+  Alert,
+  View,
+  Text,
+  TouchableOpacity,
+  onPress
+} from "react-native";
 import { FlatGrid } from "react-native-super-grid";
 
 class Emojigrid extends Component {
@@ -46,9 +53,13 @@ class Emojigrid extends Component {
         // fixed
         spacing={2}
         renderItem={({ item, index }) => (
-          <View style={[styles.itemContainer, { backgroundColor: "#F7F7F7" }]}>
-            <Text style={styles.itemName}>{item.name}</Text>
-          </View>
+          <TouchableOpacity>
+            <View
+              style={[styles.itemContainer, { backgroundColor: "#F7F7F7" }]}
+            >
+              <Text style={styles.itemName}>{item.name}</Text>
+            </View>
+          </TouchableOpacity>
         )}
       />
     );

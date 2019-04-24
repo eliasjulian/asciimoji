@@ -5,45 +5,27 @@ import {
   View,
   Text,
   TouchableOpacity,
+  Clipboard,
+  Button,
   onPress
 } from "react-native";
 import { FlatGrid } from "react-native-super-grid";
 
 class Emojigrid extends Component {
-  render() {
-    const items = [
-      { name: "¯_(ツ)_/¯" },
-      { name: "ʕ·͡ᴥ·ʔ" },
-      { name: "•`_´•" },
-      { name: "¯_(ツ)_/¯" },
-      { name: "ʕ·͡ᴥ·ʔ" },
-      { name: "•`_´•" },
-      { name: "¯_(ツ)_/¯" },
-      { name: "ʕ·͡ᴥ·ʔ" },
-      { name: "•`_´•" },
-      { name: "¯_(ツ)_/¯" },
-      { name: "ʕ·͡ᴥ·ʔ" },
-      { name: "•`_´•" },
-      { name: "¯_(ツ)_/¯" },
-      { name: "ʕ·͡ᴥ·ʔ" },
-      { name: "•`_´•" },
-      { name: "¯_(ツ)_/¯" },
-      { name: "ʕ·͡ᴥ·ʔ" },
-      { name: "•`_´•" },
-      { name: "¯_(ツ)_/¯" },
-      { name: "ʕ·͡ᴥ·ʔ" },
-      { name: "•`_´•" },
-      { name: "¯_(ツ)_/¯" },
-      { name: "ʕ·͡ᴥ·ʔ" },
-      { name: "•`_´•" },
-      { name: "¯_(ツ)_/¯" },
-      { name: "ʕ·͡ᴥ·ʔ" },
-      { name: "•`_´•" },
-      { name: "¯_(ツ)_/¯" },
-      { name: "ʕ·͡ᴥ·ʔ" },
-      { name: "•`_´•" }
-    ];
+  constructor(props) {
+    super(props);
+    this.state = {
+      text: "WELL AT LEAST THE CLIPBOARD WORKS",
+      clipboardContent: null
+    };
+  }
 
+  writeToClipboard = async () => {
+    await Clipboard.setString(this.state.text);
+    alert("Boom, Copied");
+  };
+
+  render() {
     return (
       <FlatGrid
         itemDimension={130}
@@ -57,7 +39,9 @@ class Emojigrid extends Component {
             <View
               style={[styles.itemContainer, { backgroundColor: "#F7F7F7" }]}
             >
-              <Text style={styles.itemName}>{item.name}</Text>
+              <Text onPress={this.writeToClipboard} style={styles.itemName}>
+                {item.name}
+              </Text>
             </View>
           </TouchableOpacity>
         )}
@@ -67,6 +51,39 @@ class Emojigrid extends Component {
 }
 
 export default Emojigrid;
+
+const items = [
+  { name: "¯_(ツ)_/¯" },
+  { name: "ʕ·͡ᴥ·ʔ" },
+  { name: "•`_´•" },
+  { name: "¯_(ツ)_/¯" },
+  { name: "ʕ·͡ᴥ·ʔ" },
+  { name: "•`_´•" },
+  { name: "¯_(ツ)_/¯" },
+  { name: "ʕ·͡ᴥ·ʔ" },
+  { name: "•`_´•" },
+  { name: "¯_(ツ)_/¯" },
+  { name: "ʕ·͡ᴥ·ʔ" },
+  { name: "•`_´•" },
+  { name: "¯_(ツ)_/¯" },
+  { name: "ʕ·͡ᴥ·ʔ" },
+  { name: "•`_´•" },
+  { name: "¯_(ツ)_/¯" },
+  { name: "ʕ·͡ᴥ·ʔ" },
+  { name: "•`_´•" },
+  { name: "¯_(ツ)_/¯" },
+  { name: "ʕ·͡ᴥ·ʔ" },
+  { name: "•`_´•" },
+  { name: "¯_(ツ)_/¯" },
+  { name: "ʕ·͡ᴥ·ʔ" },
+  { name: "•`_´•" },
+  { name: "¯_(ツ)_/¯" },
+  { name: "ʕ·͡ᴥ·ʔ" },
+  { name: "•`_´•" },
+  { name: "¯_(ツ)_/¯" },
+  { name: "ʕ·͡ᴥ·ʔ" },
+  { name: "•`_´•" }
+];
 
 const styles = StyleSheet.create({
   gridView: {

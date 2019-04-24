@@ -14,7 +14,9 @@ export default class App extends React.Component {
             height="35"
             source={require("./assets/logoblack.svg")}
           />
-          <Menu source={require("./assets/menuicon.png")} />
+          <TouchableOpacity>
+            <MenuToggle source={require("./assets/menuicon.png")} />
+          </TouchableOpacity>
         </Navbar>
         <ScrollView>
           <Emojigrid />
@@ -37,10 +39,10 @@ const Navbar = styled.View`
   background-color: white;
 `;
 
-const Menu = styled.Image`
-  width: 35px;
-  height: 23px;
+const MenuToggle = styled.Image`
+  width: 32px;
+  height: 21px;
   position: absolute;
   right: 20;
-  top: 5;
+  bottom: 5;
 `;

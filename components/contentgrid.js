@@ -15,13 +15,12 @@ class Emojigrid extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      text: "WELL AT LEAST THE CLIPBOARD WORKS",
-      clipboardContent: null
+      text: "WELL AT LEAST THE CLIPBOARD WORKS"
     };
   }
 
-  writeToClipboard = async () => {
-    await Clipboard.setString(this.state.text);
+  writeToClipboard = async text => {
+    await Clipboard.setString(text);
     alert("Boom, Copied");
   };
 
@@ -35,7 +34,7 @@ class Emojigrid extends Component {
         // fixed
         spacing={2}
         renderItem={({ item, index }) => (
-          <TouchableOpacity onPress={this.writeToClipboard}>
+          <TouchableOpacity onPress={() => this.writeToClipboard(item.name)}>
             <View
               style={[styles.itemContainer, { backgroundColor: "#F7F7F7" }]}
             >
@@ -51,12 +50,6 @@ class Emojigrid extends Component {
 export default Emojigrid;
 
 const items = [
-  { name: "¯_(ツ)_/¯" },
-  { name: "ʕ·͡ᴥ·ʔ" },
-  { name: "•`_´•" },
-  { name: "¯_(ツ)_/¯" },
-  { name: "ʕ·͡ᴥ·ʔ" },
-  { name: "•`_´•" },
   { name: "¯_(ツ)_/¯" },
   { name: "ʕ·͡ᴥ·ʔ" },
   { name: "•`_´•" },

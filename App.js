@@ -1,48 +1,29 @@
 import React from "react";
-import { ScrollView, TouchableOpacity } from "react-native";
-import styled from "styled-components";
-import SvgUri from "react-native-svg-uri";
-import Emojigrid from "./components/contentgrid";
+import { createStore } from "redux";
+import { Provider } from "react-redux";
+import HomeScreen from "./screens/HomeScreen";
 
-export default class App extends React.Component {
-  render() {
-    return (
-      <Container>
-        <Navbar>
-          <SvgUri
-            width="180"
-            height="35"
-            source={require("./assets/logoblack.svg")}
-          />
-          <TouchableOpacity>
-            <MenuToggle source={require("./assets/menuicon.png")} />
-          </TouchableOpacity>
-        </Navbar>
-        <ScrollView>
-          <Emojigrid />
-        </ScrollView>
-      </Container>
-    );
+const initialState = {
+  action: ""
+};
+
+const reducer = (state = initialState, action) => {
+  switch (action.type) {
+    case "OPEN_MENU":
+      return { action: "openMenu" };
+    case "CLOSE_MENU":
+      return { action: "closeMenu" };
+    default:
+      return state;
   }
-}
+};
 
-const Container = styled.View`
-  flex: 1;
-  background-color: white;
-`;
+const store = createStore(reducer);
 
-const Navbar = styled.View`
-  width: 100%;
-  margin-top: 80px;
-  padding-left: 20px;
-  padding-bottom: 30px;
-  background-color: white;
-`;
+const App = () => (
+  <Provider store={store}>
+    <HomeScreen />
+  </Provider>
+);
 
-const MenuToggle = styled.Image`
-  width: 32px;
-  height: 21px;
-  position: absolute;
-  right: 20;
-  bottom: 5;
-`;
+export default App;

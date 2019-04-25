@@ -35,13 +35,11 @@ class Emojigrid extends Component {
         // fixed
         spacing={2}
         renderItem={({ item, index }) => (
-          <TouchableOpacity>
+          <TouchableOpacity onPress={this.writeToClipboard}>
             <View
               style={[styles.itemContainer, { backgroundColor: "#F7F7F7" }]}
             >
-              <Text onPress={this.writeToClipboard} style={styles.itemName}>
-                {item.name}
-              </Text>
+              <Text style={styles.itemName}>{item.name}</Text>
             </View>
           </TouchableOpacity>
         )}

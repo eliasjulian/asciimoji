@@ -81,7 +81,7 @@ const CloseView = styled.View`
   justify-content: center;
   align-items: center;
   margin-left: 20px;
-  margin-top: 65px;
+  margin-top: 50px;
   margin-bottom: 275px;
 `;
 
@@ -104,6 +104,6 @@ const Head = styled.Text`
   font-size: 20px;
   font-weight: 500;
   width: 275px;
-  margin-top: 60px;
-  margin-left: 35px;
+  margin-top: 10%;
+  margin-left: 30px;
 `;

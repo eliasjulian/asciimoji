@@ -1,13 +1,10 @@
 import React, { Component } from "react";
 import {
   StyleSheet,
-  Alert,
   View,
   Text,
   TouchableOpacity,
-  Clipboard,
-  Button,
-  onPress
+  Clipboard
 } from "react-native";
 import { FlatGrid } from "react-native-super-grid";
 
@@ -15,13 +12,13 @@ class Emojigrid extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      text: "WELL AT LEAST THE CLIPBOARD WORKS"
+      text: ""
     };
   }
 
   writeToClipboard = async text => {
     await Clipboard.setString(text);
-    alert("Boom, Copied");
+    alert("Boom, copied.");
   };
 
   render() {
@@ -53,33 +50,60 @@ const items = [
   { name: "¯_(ツ)_/¯" },
   { name: "ʕ·͡ᴥ·ʔ" },
   { name: "•`_´•" },
-  { name: "¯_(ツ)_/¯" },
-  { name: "ʕ·͡ᴥ·ʔ" },
-  { name: "•`_´•" },
-  { name: "¯_(ツ)_/¯" },
-  { name: "ʕ·͡ᴥ·ʔ" },
-  { name: "•`_´•" },
-  { name: "¯_(ツ)_/¯" },
-  { name: "ʕ·͡ᴥ·ʔ" },
-  { name: "•`_´•" },
-  { name: "¯_(ツ)_/¯" },
-  { name: "ʕ·͡ᴥ·ʔ" },
-  { name: "•`_´•" },
-  { name: "¯_(ツ)_/¯" },
-  { name: "ʕ·͡ᴥ·ʔ" },
-  { name: "•`_´•" },
-  { name: "¯_(ツ)_/¯" },
-  { name: "ʕ·͡ᴥ·ʔ" },
-  { name: "•`_´•" },
-  { name: "¯_(ツ)_/¯" },
-  { name: "ʕ·͡ᴥ·ʔ" },
-  { name: "•`_´•" }
+  { name: "( ͡° ͜ʖ ͡°)" },
+  { name: "ಠ_ಠ" },
+  { name: "( •_•)" },
+  { name: "(⌐■_■)" },
+  { name: "༼ つ ◕_◕ ༽つ" },
+  { name: "ʕ•ᴥ•ʔ" },
+  { name: "•ᴗ•" },
+  { name: "(╯°□°)╯︵" },
+  { name: "ಠᴗಠ" },
+  { name: "(•̀ᴗ•́)و ̑̑" },
+  { name: "ฅ^•ﻌ•^ฅ" },
+  { name: "ಥ_ಥ" },
+  { name: "[̲̅$̲̅(̲̅ ͡° ͜ʖ ͡°̲̅)̲̅$̲̅]" },
+  { name: "(づ￣ ³￣)づ" },
+  { name: "(⊙_☉)" },
+  { name: "ლ(ಠ_ಠლ)" },
+  { name: "ᕦ(ò_óˇ)ᕤ" },
+  { name: "(ง •̀_•́)ง" },
+  { name: "(ﾉ◕ヮ◕)ﾉ*:" },
+  { name: "ʘ‿ʘ" },
+  { name: "( ˇ෴ˇ )" },
+  { name: "( ˘ ³˘)♥" },
+  { name: "(◕‿◕✿)" },
+  { name: "(~‾▿‾)~" },
+  { name: "(╥_╥)" },
+  { name: "(☉_☉)" },
+  { name: "(=ↀωↀ=)" },
+  { name: "ᕙ(⇀‸↼‶)ᕗ" },
+  { name: "V●ᴥ●V" },
+  { name: "◔_◔" },
+  { name: "¯_(⊙_ʖ⊙)_/¯" },
+  { name: "(/•-•)/" },
+  { name: "｡^‿^｡" },
+  { name: "(●__●)" },
+  { name: "ヽ(。_°)ノ" },
+  { name: "(◍•﹏•)" },
+  { name: "ヽ(ﾟДﾟ)ﾉ" },
+  { name: "(ᴗ˳ᴗ)" },
+  { name: "(•̀o•́)ง" },
+  { name: "¯_( ͡° ͜ʖ ͡°)_/¯" },
+  { name: "ヽ(°◇° )ノ" },
+  { name: "(◕ω◕)♡" },
+  { name: "ヾ(⌐■_■)ノ♪" },
+  { name: "ヾ(^_^ )ゞ" },
+  { name: "( ͡° ͜ʖ ( ͡° ͜ʖ ͡°) ͜ʖ ͡°)" },
+  { name: "(‘◉⌓◉’)" },
+  { name: "༼つಠ益ಠ༽つ" },
+  { name: "(°o°)" }
 ];
 
 const styles = StyleSheet.create({
   gridView: {
     marginTop: 0,
-    marginBottom: 400,
+    marginBottom: 120,
     flex: 1
   },
   itemContainer: {

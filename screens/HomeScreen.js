@@ -65,6 +65,8 @@ class HomeScreen extends React.Component {
           </Navbar>
           <ScrollView>
             <Emojigrid />
+            <FooterText>Tap to copy, paste anywhere.</FooterText>
+            <FooterEmoji>(｡◕‿‿◕｡)</FooterEmoji>
           </ScrollView>
         </SafeAreaView>
       </AnimatedContainer>
@@ -99,4 +101,24 @@ const MenuToggle = styled.Image`
   position: absolute;
   right: 20;
   bottom: 5;
+`;
+
+const FooterText = styled.Text`
+  color: black;
+  font-size: 20px;
+  font-weight: 500;
+  width: 150px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  margin-left: 25px;
+`;
+
+const FooterEmoji = styled.Text`
+  color: black;
+  font-size: 20px;
+  font-weight: 500;
+  width: 150px;
+  margin-top: 20px;
+  margin-bottom: 150px;
+  margin-left: 25px;
 `;

@@ -102,7 +102,7 @@ const Content = styled.View`
 const Head = styled.Text`
   color: white;
   font-size: 20px;
-  font-weight: bold;
+  font-weight: 500;
   width: 275px;
   margin-top: 60px;
   margin-left: 35px;

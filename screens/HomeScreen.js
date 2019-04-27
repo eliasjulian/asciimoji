@@ -4,7 +4,7 @@ import {
   TouchableOpacity,
   SafeAreaView,
   Animated,
-  Easing
+  StatusBar
 } from "react-native";
 import styled from "styled-components";
 import SvgUri from "react-native-svg-uri";
@@ -51,6 +51,7 @@ class HomeScreen extends React.Component {
   render() {
     return (
       <AnimatedContainer style={{ opacity: this.state.opacity }}>
+        <StatusBar barStyle="dark-content" translucent={true} />
         <Menu />
         <SafeAreaView>
           <Navbar>

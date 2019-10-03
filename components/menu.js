@@ -62,6 +62,7 @@ class Menu extends React.Component {
           <SvgUri
             style={{ marginLeft: 33, marginTop: 85 }}
             source={require("../assets/asciimoji_mark.svg")}
+            fill="#fff"
           />
         </Content>
       </AnimatedContainer>
@@ -78,10 +79,10 @@ const CloseView = styled.View`
   width: 60px;
   height: 60px;
   border-radius: 22px;
-  justify-content: center;
-  align-items: center;
-  margin-left: 20px;
-  margin-top: 50px;
+  justify-content: flex-start;
+  align-items: flex-end;
+  margin-left: 240px;
+  margin-top: 65px;
   margin-bottom: 275px;
 `;
 
@@ -96,7 +97,8 @@ const AnimatedContainer = Animated.createAnimatedComponent(Container);
 
 const Content = styled.View`
   height: ${screenHeight};
-  background: rgba(0, 0, 0, 0.95);
+  width: ${screenWidth};
+  background: rgba(0, 0, 0, 1);
 `;
 
 const Head = styled.Text`

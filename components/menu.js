@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Dimensions, Animated, TouchableOpacity } from "react-native";
-import { Icon } from "expo";
+import * as Icon from "@expo/vector-icons";
 import { connect } from "react-redux";
 import SvgUri from "react-native-svg-uri";
 

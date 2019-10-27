@@ -91,6 +91,7 @@ const Container = styled.View`
   height: ${screenHeight};
   width: ${screenWidth};
   z-index: 100;
+  box-shadow: -10px 5px 40px rgba(0, 0, 0, .80);
 `;
 
 const AnimatedContainer = Animated.createAnimatedComponent(Container);

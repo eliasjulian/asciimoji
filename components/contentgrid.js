@@ -33,7 +33,7 @@ class Emojigrid extends Component {
         renderItem={({ item, index }) => (
           <TouchableOpacity onPress={() => this.writeToClipboard(item.name)}>
             <View
-              style={[styles.itemContainer, { backgroundColor: "#F7F7F7" }]}
+              style={[styles.itemContainer, { backgroundColor: "#1F1F1F" }]}
             >
               <Text style={styles.itemName}>{item.name}</Text>
             </View>
@@ -50,6 +50,7 @@ const items = [
   { name: "¯＼_(ツ)_／¯" },
   { name: "ʕ·͡ᴥ·ʔ" },
   { name: "•`_´•" },
+  { name: "( •͡˘ _•͡˘)ノð" },
   { name: "ツ" },
   { name: "( ͡° ͜ʖ ͡°)" },
   { name: "ಠ_ಠ" },
@@ -100,7 +101,13 @@ const items = [
   { name: "( ͡° ͜ʖ ( ͡° ͜ʖ ͡°) ͜ʖ ͡°)" },
   { name: "(‘◉⌓◉’)" },
   { name: "༼つಠ益ಠ༽つ" },
-  { name: "(°o°)" }
+  { name: "(°o°)" },
+  { name: "※＼(^o^)／※" },
+  { name: "(✜︵✜)" },
+  { name: "୧(▲ᴗ▲)ノ" },
+  { name: "♥‿♥" },
+  { name: "ʕ •́؈•̀)" },
+
 ];
 
 const styles = StyleSheet.create({
@@ -117,7 +124,7 @@ const styles = StyleSheet.create({
   },
   itemName: {
     fontSize: 18,
-    color: "black",
+    color: "white",
     fontWeight: "400"
   }
 });

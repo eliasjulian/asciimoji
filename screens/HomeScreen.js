@@ -51,13 +51,14 @@ class HomeScreen extends React.Component {
   render() {
     return (
       <AnimatedContainer style={{ opacity: this.state.opacity }}>
-        <StatusBar barStyle="dark-content" translucent={true} />
+        <StatusBar barStyle="light-content" translucent={true} />
         <Menu />
         <SafeAreaView>
           <Navbar>
             <SvgUri
               width="180"
               height="35"
+              fill="white"
               source={require("../assets/logoblack.svg")}
             />
             <TouchableOpacity onPress={this.props.openMenu}>
@@ -82,7 +83,7 @@ export default connect(
 
 const Container = styled.View`
   flex: 1;
-  background-color: white;
+  background-color: black;
   opacity: 1;
 `;
 
@@ -93,19 +94,19 @@ const Navbar = styled.View`
   margin-top: 40px;
   padding-left: 20px;
   padding-bottom: 30px;
-  background-color: white;
+  background-color: black;
 `;
 
 const MenuToggle = styled.Image`
-  width: 32px;
-  height: 21px;
+  width: 40px;
+  height: 25px;
   position: absolute;
   right: 20;
   bottom: 5;
 `;
 
 const FooterText = styled.Text`
-  color: black;
+  color: white;
   font-size: 20px;
   font-weight: 500;
   width: 150px;
@@ -115,7 +116,7 @@ const FooterText = styled.Text`
 `;
 
 const FooterEmoji = styled.Text`
-  color: black;
+  color: white;
   font-size: 20px;
   font-weight: 500;
   width: 150px;

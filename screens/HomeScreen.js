@@ -91,9 +91,9 @@ const AnimatedContainer = Animated.createAnimatedComponent(Container);
 
 const Navbar = styled.View`
   width: 100%;
-  margin-top: 40px;
+  margin-top: 20px;
   padding-left: 20px;
-  padding-bottom: 30px;
+  padding-bottom: 20px;
   background-color: black;
 `;
 

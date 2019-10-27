@@ -54,7 +54,7 @@ class Menu extends React.Component {
         <Content>
           <TouchableOpacity onPress={this.props.closeMenu}>
             <CloseView>
-              <Icon.Ionicons name="ios-close" size={80} color="#545454" />
+              <Icon.MaterialIcons name="close" size={60} color="#545454" />
             </CloseView>
           </TouchableOpacity>
           <Head>1 – tap to copy</Head>
@@ -78,11 +78,10 @@ export default connect(
 const CloseView = styled.View`
   width: 60px;
   height: 60px;
-  border-radius: 22px;
   justify-content: flex-start;
   align-items: flex-end;
-  margin-left: 240px;
-  margin-top: 65px;
+  margin-left: 250px;
+  margin-top: 55px;
   margin-bottom: 275px;
 `;
 

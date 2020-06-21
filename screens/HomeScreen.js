@@ -7,7 +7,7 @@ import {
   StatusBar
 } from "react-native";
 import styled from "styled-components";
-import SvgUri from "react-native-svg-uri";
+import Logo from "../assets/logoblack.svg";
 import Emojigrid from "../components/contentgrid";
 import Menu from "../components/menu";
 import { connect } from "react-redux";
@@ -55,12 +55,7 @@ class HomeScreen extends React.Component {
         <Menu />
         <SafeAreaView>
           <Navbar>
-            <SvgUri
-              width="180"
-              height="35"
-              fill="white"
-              source={require("../assets/logoblack.svg")}
-            />
+            <Logo width={180} height={35} fill={"#fff"}/>
             <TouchableOpacity onPress={this.props.openMenu}>
               <MenuToggle source={require("../assets/menuicon.png")} />
             </TouchableOpacity>

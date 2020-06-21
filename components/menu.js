@@ -1,9 +1,8 @@
 import React from "react";
-import styled from "styled-components";
+import styled from "styled-components/native";
 import { Dimensions, Animated, TouchableOpacity } from "react-native";
 import * as Icon from "@expo/vector-icons";
 import { connect } from "react-redux";
-import SvgUri from "react-native-svg-uri";
 
 function mapStateToProps(state) {
   return { action: state.action };
@@ -59,11 +58,6 @@ class Menu extends React.Component {
           </TouchableOpacity>
           <Head>1 – tap to copy</Head>
           <Head>2 – paste anywhere</Head>
-          <SvgUri
-            style={{ marginLeft: 33, marginTop: 85 }}
-            source={require("../assets/asciimoji_mark.svg")}
-            fill="#fff"
-          />
         </Content>
       </AnimatedContainer>
     );

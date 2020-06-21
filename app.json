@@ -4,13 +4,12 @@
     "description": "Tap to copy, paste anywhere. How many times have you googled 'shrug emoji' just to copy and paste it from that one article on that one site you can never remember and for some reason haven't saved to your bookmarks? Asciimoji is a brutally simple tap-to-copy home of every ascii emoji you could ever want. Features like filtering emoji by mood, sharing directly to iMessage, and more coming soon! ",
     "slug": "asciimoji-app",
     "privacy": "public",
-    "sdkVersion": "33.0.0",
     "platforms": [
       "ios",
       "android"
     ],
     "version": "1.2.1",
-    "orientation": "portrait",
+    "orientation": "portrait", 
     "icon": "./assets/appicon.png",
     "splash": {
       "image": "./assets/splash.png",
@@ -27,6 +26,22 @@
     "ios": {
       "bundleIdentifier": "com.eliasjulian.asciimoji",
       "supportsTablet": true
+    },
+    "packagerOpts": {
+      "config": "metro.config.js",
+      "sourceExts": [
+        "expo.ts",
+        "expo.tsx",
+        "expo.js",
+        "expo.jsx",
+        "ts",
+        "tsx",
+        "js",
+        "jsx",
+        "json",
+        "wasm",
+        "svg"
+      ]
     }
   }
 }

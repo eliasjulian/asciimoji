@@ -1,32 +1,44 @@
 {
   "expo": {
     "name": "Asciimoji",
-    "description": "Tap to copy, paste anywhere. How many times have you googled 'shrug emoji' just to copy and paste it from that one article on that one site you can never remember and for some reason haven't saved to your bookmarks? Asciimoji is a brutally simple tap-to-copy home of every ascii emoji you could ever want. Features like filtering emoji by mood, sharing directly to iMessage, and more coming soon! ",
     "slug": "asciimoji-app",
-    "privacy": "public",
-    "sdkVersion": "33.0.0",
-    "platforms": [
-      "ios",
-      "android"
-    ],
     "version": "1.2.1",
     "orientation": "portrait",
     "icon": "./assets/appicon.png",
-    "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#000000"
-    },
-    "updates": {
-      "enabled": true,
-      "fallbackToCacheTimeout": 3000
-    },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "scheme": "asciimoji",
+    "userInterfaceStyle": "dark",
+    "backgroundColor": "#000000",
     "ios": {
       "bundleIdentifier": "com.eliasjulian.asciimoji",
       "supportsTablet": true
+    },
+    "android": {
+      "package": "com.eliasjulian.asciimoji",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/appicon.png",
+        "backgroundColor": "#000000"
+      }
+    },
+    "web": {
+      "output": "static",
+      "favicon": "./assets/appicon.png"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/appicon.png",
+          "imageWidth": 120,
+          "backgroundColor": "#000000"
+        }
+      ],
+      "expo-image",
+      "expo-status-bar"
+    ],
+    "experiments": {
+      "typedRoutes": true,
+      "reactCompiler": true
     }
   }
 }

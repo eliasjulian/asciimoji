@@ -2,7 +2,15 @@ import * as Clipboard from 'expo-clipboard';
 import { Image } from 'expo-image';
 import { Link } from 'expo-router';
 import { useEffect, useState } from 'react';
-import { FlatList, Pressable, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
+import {
+  FlatList,
+  Platform,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+  useWindowDimensions,
+} from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { EmojiCell } from '@/components/emoji-cell';
@@ -12,6 +20,9 @@ import { EMOJI } from '@/data/emoji';
 const MIN_CELL_WIDTH = 130;
 const GAP = 2;
 const TOAST_MS = 4000;
+
+// Android 13+ draws its own clipboard preview in the same corner, so ours would sit under it.
+const SYSTEM_CONFIRMS_COPY = Platform.OS === 'android' && Platform.Version >= 33;
 
 export default function HomeScreen() {
   const { width } = useWindowDimensions();
@@ -30,7 +41,7 @@ export default function HomeScreen() {
 
   const copy = async (emoji: string) => {
     await Clipboard.setStringAsync(emoji);
-    setCopied(emoji);
+    if (!SYSTEM_CONFIRMS_COPY) setCopied(emoji);
   };
 
   return (

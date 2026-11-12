@@ -20,7 +20,7 @@
       }
     },
     "web": {
-      "output": "static",
+      "output": "single",
       "favicon": "./assets/appicon.png"
     },
     "plugins": [

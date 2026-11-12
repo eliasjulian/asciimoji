@@ -10,6 +10,16 @@
         "simulator": true,
         "withoutCredentials": true
       }
+    },
+    "production": {
+      "autoIncrement": true
+    }
+  },
+  "submit": {
+    "production": {
+      "ios": {
+        "ascAppId": "1461670485"
+      }
     }
   }
 }

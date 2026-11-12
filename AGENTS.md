@@ -71,4 +71,13 @@ Gradle and its Kotlin daemons hold about 8 GB after a build. Together with the e
 
 ### iOS
 
-There is no macOS, Xcode or iOS Simulator here, so an agent cannot render the iOS app. What can be checked locally is that the iOS JavaScript bundle builds: `npx expo export --platform ios`. Say so plainly in summaries instead of implying iOS was seen. Real iOS review needs an Expo Build made on Expo's servers (`npx eas-cli@latest ...`), which requires an `EXPO_TOKEN` secret; the App Store version of Expo Go stops at SDK 54 and cannot open this project.
+There is no macOS, Xcode or iOS Simulator here, so an agent cannot render the iOS app. What can be checked locally is that the iOS JavaScript bundle builds: `npx expo export --platform ios`. Say so plainly in summaries instead of implying iOS was seen. The App Store version of Expo Go stops at SDK 54 and cannot open this project.
+
+A simulator build does not need an Apple Developer account. `eas.json` profile `simulator` sets `ios.simulator` and `ios.withoutCredentials`. With `EXPO_TOKEN` set (never paste it into chat):
+
+```bash
+npx eas-cli@latest init --force --non-interactive
+npx eas-cli@latest build -p ios --profile simulator --non-interactive --no-wait
+```
+
+`eas init` writes `extra.eas.projectId` into `app.json` and must be committed. The finished build is a `.app` inside a tarball on the Expo build page. On a Mac, `npx eas-cli@latest build:run -p ios --latest` installs it in the iOS Simulator. This VM cannot run that install.

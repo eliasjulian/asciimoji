@@ -46,20 +46,48 @@ body {
   top: 20px;
   right: 20px;
   z-index: 2;
-  color: var(--text);
-  text-decoration: none;
-  font-size: 13px;
-  font-weight: 500;
-  line-height: 1;
-  padding: 9px 12px;
-  border: 1px solid var(--line);
-  background: #000;
+  display: block;
+  line-height: 0;
 }
 
-.store:hover,
+.store img {
+  display: block;
+  width: 120px;
+  height: 40px;
+}
+
 .store:focus-visible {
-  color: var(--text-strong);
-  border-color: #6a6a6a;
+  outline: 1px solid var(--text);
+  outline-offset: 5px;
+  border-radius: 8px;
+}
+
+/* The shine is a separate layer masked to the badge outline, so Apple's
+   badge artwork itself is left untouched. */
+.store::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+      105deg,
+      transparent 42%,
+      rgba(255, 255, 255, 0.55) 50%,
+      transparent 58%
+    )
+    100% 0 / 300% 100% no-repeat;
+  -webkit-mask: url("/download-on-the-app-store.svg") center / 100% 100%
+    no-repeat;
+  mask: url("/download-on-the-app-store.svg") center / 100% 100% no-repeat;
+}
+
+/* The band rests off the left edge. The transition exists only while
+   hovered, so it sweeps once and resets instantly on mouse-out. */
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .store:hover::after {
+    background-position: 0 0;
+    transition: background-position 700ms ease-out;
+  }
 }
 
 .stage {

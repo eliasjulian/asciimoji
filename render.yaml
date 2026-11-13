@@ -1,0 +1,30 @@
+# Static site for asciimoji.app. DNS for the apex domain still has to
+# point at this service before the custom domain will resolve.
+services:
+  - type: web
+    name: asciimoji
+    runtime: static
+    # rootDir keeps Render from installing the Expo app's dependencies
+    # in the repo root; the site itself has nothing to build.
+    rootDir: site
+    buildCommand: "true"
+    staticPublishPath: .
+    envVars:
+      - key: SKIP_INSTALL_DEPS
+        value: "true"
+    domains:
+      - asciimoji.app
+    headers:
+      - path: /*
+        name: X-Frame-Options
+        value: DENY
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
+      - path: /*
+        name: Referrer-Policy
+        value: no-referrer
+    routes:
+      - type: rewrite
+        source: /privacy
+        destination: /privacy/index.html

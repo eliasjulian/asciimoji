@@ -6,7 +6,7 @@
     "orientation": "portrait",
     "icon": "./assets/appicon.png",
     "scheme": "asciimoji",
-    "userInterfaceStyle": "dark",
+    "userInterfaceStyle": "automatic",
     "backgroundColor": "#000000",
     "ios": {
       "bundleIdentifier": "com.eliasjulian.asciimoji",
@@ -34,11 +34,16 @@
         {
           "image": "./assets/appicon.png",
           "imageWidth": 120,
-          "backgroundColor": "#000000"
+          "backgroundColor": "#ffffff",
+          "dark": {
+            "image": "./assets/appicon.png",
+            "backgroundColor": "#000000"
+          }
         }
       ],
       "expo-image",
-      "expo-status-bar"
+      "expo-status-bar",
+      "expo-system-ui"
     ],
     "experiments": {
       "typedRoutes": true,

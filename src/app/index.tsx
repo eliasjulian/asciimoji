@@ -14,7 +14,7 @@ import {
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { EmojiCell } from '@/components/emoji-cell';
-import { Colors } from '@/constants/theme';
+import { usePalette } from '@/constants/theme';
 import { EMOJI } from '@/data/emoji';
 
 const MIN_CELL_WIDTH = 130;
@@ -25,6 +25,7 @@ const TOAST_MS = 4000;
 const SYSTEM_CONFIRMS_COPY = Platform.OS === 'android' && Platform.Version >= 33;
 
 export default function HomeScreen() {
+  const colors = usePalette();
   const { width } = useWindowDimensions();
   const insets = useSafeAreaInsets();
   const [copied, setCopied] = useState<string | null>(null);
@@ -45,13 +46,15 @@ export default function HomeScreen() {
   };
 
   return (
-    <SafeAreaView style={styles.container} edges={['top', 'left', 'right']}>
+    <SafeAreaView
+      style={[styles.container, { backgroundColor: colors.background }]}
+      edges={['top', 'left', 'right']}>
       <View style={styles.navbar}>
         <Image
           source={require('@/assets/logoblack.svg')}
           style={styles.logo}
           contentFit="contain"
-          tintColor={Colors.text}
+          tintColor={colors.text}
           accessibilityLabel="Asciimoji"
         />
         <Link href="/menu" asChild>
@@ -60,6 +63,7 @@ export default function HomeScreen() {
               source={require('@/assets/menuicon.png')}
               style={styles.menuIcon}
               contentFit="contain"
+              tintColor={colors.text}
             />
           </Pressable>
         </Link>
@@ -75,18 +79,22 @@ export default function HomeScreen() {
         renderItem={({ item }) => <EmojiCell emoji={item} width={cellWidth} onPress={copy} />}
         ListFooterComponent={
           <View style={[styles.footer, { paddingBottom: insets.bottom + 80 }]}>
-            <Text style={styles.footerText}>Tap to copy, paste anywhere.</Text>
-            <Text style={styles.footerText}>(｡◕‿‿◕｡)</Text>
+            <Text style={[styles.footerText, { color: colors.text }]}>
+              {'Tap to copy, paste anywhere.'}
+            </Text>
+            <Text style={[styles.footerText, { color: colors.text }]}>(｡◕‿‿◕｡)</Text>
           </View>
         }
       />
       {copied !== null && (
         <View
-          style={[styles.toast, { bottom: insets.bottom + 24 }]}
+          style={[styles.toast, { bottom: insets.bottom + 24, backgroundColor: colors.text }]}
           pointerEvents="none"
           accessibilityLiveRegion="polite"
           accessibilityRole="alert">
-          <Text style={styles.toastText}>Boom, copied. {copied}</Text>
+          <Text style={[styles.toastText, { color: colors.background }]}>
+            {`Boom, copied. ${copied}`}
+          </Text>
         </View>
       )}
     </SafeAreaView>
@@ -96,7 +104,6 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.background,
   },
   navbar: {
     flexDirection: 'row',
@@ -124,7 +131,6 @@ const styles = StyleSheet.create({
     gap: 20,
   },
   footerText: {
-    color: Colors.text,
     fontSize: 20,
     fontWeight: '500',
   },
@@ -134,10 +140,8 @@ const styles = StyleSheet.create({
     right: 20,
     padding: 16,
     alignItems: 'center',
-    backgroundColor: Colors.text,
   },
   toastText: {
-    color: Colors.background,
     fontSize: 16,
     fontWeight: '600',
   },

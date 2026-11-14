@@ -1,7 +1,16 @@
 import * as Clipboard from 'expo-clipboard';
 import { act, fireEvent, renderRouter, screen } from 'expo-router/testing-library';
+import { processColor, StyleSheet } from 'react-native';
 
+import { Palettes, paletteFor } from '@/constants/theme';
 import { EMOJI } from '@/data/emoji';
+
+const colorScheme: { current: 'light' | 'dark' | null } = { current: 'light' };
+
+jest.mock('react-native/Libraries/Utilities/useColorScheme', () => ({
+  __esModule: true,
+  default: () => colorScheme.current,
+}));
 
 jest.mock('expo-clipboard', () => ({
   setStringAsync: jest.fn().mockResolvedValue(true),
@@ -10,8 +19,19 @@ jest.mock('expo-clipboard', () => ({
 const SHRUG = EMOJI[0];
 
 describe('Asciimoji', () => {
+  beforeEach(() => {
+    colorScheme.current = 'light';
+  });
+
   afterEach(() => {
     jest.clearAllMocks();
+  });
+
+  it('picks the light palette unless the system is dark', () => {
+    expect(paletteFor('light')).toBe(Palettes.light);
+    expect(paletteFor(null)).toBe(Palettes.light);
+    expect(paletteFor(undefined)).toBe(Palettes.light);
+    expect(paletteFor('dark')).toBe(Palettes.dark);
   });
 
   it('ships every emoji exactly once', () => {
@@ -53,6 +73,31 @@ describe('Asciimoji', () => {
     expect(screen).toHavePathname('/');
   });
 
+  it('paints the grid and menu in the system light scheme', async () => {
+    await renderRouter('./src/app');
+
+    expect(textColor('Tap to copy, paste anywhere.')).toBe(Palettes.light.text);
+    expect(textColor(SHRUG)).toBe(Palettes.light.text);
+    expectTint(Palettes.light.text);
+
+    await fireEvent.press(screen.getByLabelText('Open menu'));
+    expect(textColor('1 – tap to copy')).toBe(Palettes.light.text);
+    expectTint(Palettes.light.text);
+  });
+
+  it('paints the grid and menu in the system dark scheme', async () => {
+    colorScheme.current = 'dark';
+    await renderRouter('./src/app');
+
+    expect(textColor('Tap to copy, paste anywhere.')).toBe(Palettes.dark.text);
+    expect(textColor(SHRUG)).toBe(Palettes.dark.text);
+    expectTint(Palettes.dark.text);
+
+    await fireEvent.press(screen.getByLabelText('Open menu'));
+    expect(textColor('1 – tap to copy')).toBe(Palettes.dark.text);
+    expectTint(Palettes.dark.text);
+  });
+
   it('falls back to the grid when the menu is opened with no history', async () => {
     await renderRouter('./src/app', { initialUrl: '/menu' });
     expect(screen).toHavePathname('/menu');
@@ -61,3 +106,14 @@ describe('Asciimoji', () => {
     expect(screen).toHavePathname('/');
   });
 });
+
+function textColor(label: string) {
+  return StyleSheet.flatten(screen.getByText(label).props.style).color;
+}
+
+function expectTint(color: string) {
+  const processed = processColor(color);
+  for (const node of screen.getAllByLabelText('Asciimoji')) {
+    expect(node.props.tintColor).toBe(processed);
+  }
+}

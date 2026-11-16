@@ -1,59 +1,30 @@
 {
-  "expo": {
-    "name": "Asciimoji",
-    "slug": "asciimoji-app",
-    "version": "2.0.0",
-    "orientation": "portrait",
-    "icon": "./assets/appicon.png",
-    "scheme": "asciimoji",
-    "userInterfaceStyle": "dark",
-    "backgroundColor": "#000000",
-    "ios": {
-      "bundleIdentifier": "com.eliasjulian.asciimoji",
-      "supportsTablet": true,
-      "config": {
-        "usesNonExemptEncryption": false
-      },
-      "buildNumber": "3"
-    },
-    "android": {
-      "package": "com.eliasjulian.asciimoji",
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/appicon.png",
-        "backgroundColor": "#000000"
-      }
-    },
-    "web": {
-      "output": "single",
-      "favicon": "./assets/appicon.png"
-    },
-    "plugins": [
-      "expo-router",
-      [
-        "expo-splash-screen",
-        {
-          "image": "./assets/appicon.png",
-          "imageWidth": 120,
-          "backgroundColor": "#000000"
-        }
-      ],
-      "expo-image",
-      "expo-status-bar"
-    ],
-    "experiments": {
-      "typedRoutes": true,
-      "reactCompiler": true
-    },
-    "extra": {
-      "router": {
-        "asyncRoutes": {
-          "web": true
-        }
-      },
-      "eas": {
-        "projectId": "33702770-6902-11e9-a0b3-2bd5d9d73a6e"
-      }
-    },
-    "owner": "eliasismyalias"
-  }
+  "$schema": "../../exact/scripts/app.schema.json",
+  "name": "Asciimoji",
+  "short_name": "Asciimoji",
+  "id": "com.eliasjulian.asciimoji",
+  "start_url": "/",
+  "display": "standalone",
+  "app": {
+    "id": "com.eliasjulian.asciimoji",
+    "name": "Asciimoji"
+  },
+  "host": {
+    "web": {},
+    "ios": {},
+    "android": {}
+  },
+  "deploy": {
+    "store": {
+      "web": "0"
+    }
+  },
+  "icons": [
+    {
+      "src": "assets/appicon.png",
+      "sizes": "1024x1024",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
 }

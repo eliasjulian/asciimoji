@@ -1,42 +1,12 @@
-# dependencies
-node_modules/
+/target/
+/dist/
+/dist.*
+/dist-windows/
+/node_modules/
+/app.contract.d.ts
+/.exact/
+/.env.local
 
-# Expo
-.expo/
-dist/
-web-build/
-expo-env.d.ts
-
-# Native
-.kotlin/
-*.orig.*
-*.jks
-*.p8
-*.p12
-*.key
-*.mobileprovision
-
-# Metro
-.metro-health-check*
-
-# debug
-npm-debug.*
-yarn-debug.*
-yarn-error.*
-
-# macOS
 .DS_Store
-*.pem
-
-# local env files
-.env*.local
-
-# typescript
-*.tsbuildinfo
-
-# test output
-coverage/
-
-# generated native folders
 /ios
 /android

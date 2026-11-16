@@ -1,0 +1,4 @@
+forma asciimoji
+
+icons
+  icon.mark = icon(svg "mark.svg")

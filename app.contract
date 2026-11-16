@@ -1,0 +1,62 @@
+// Asciimoji: a grid of kaomoji. Tap one and it is copied; the menu is the
+// two steps and the mark. Colour, type and chrome are the platform's: the
+// header is the navigation bar, the menu is a sheet, the tiles are the
+// secondary background, and the text follows the device's size.
+shape Catalog
+  items: string[]
+  count: number
+  unique: number
+
+routes nav
+  home "/"
+    menu "/menu"
+
+component Asciimoji
+  resource catalog = loadEmoji() as shape Catalog else empty(count=0, unique=0)
+  state copied = ""
+  action copy(item: string)
+    copyText(item)
+    haptic("success")
+    copied = item
+  action dismiss
+    copied = ""
+  action openMenu
+    nav = push(nav, "/menu")
+  action follow(url: string)
+    nav = go(nav, url)
+  action back
+    nav = back(nav)
+  task clear when copied != "" key=copied
+    after(4000, dismiss)
+  view
+    main testId="root" navigationKey=`${top(nav).id}` navigationBack="close" navigate=follow width="100%" height="100%"
+      for e in stack(nav) key=e.id
+        if e.name == "home"
+          column navigationKey=`${e.id}` navigationScroll="grid" testId="home" position="absolute" inset=0 display="flex" flex-direction="column"
+            header display="flex" align-items="center"
+              text "Asciimoji" role="heading" aria-level=1 flex=1
+              button press=openMenu aria-label="Open menu" testId="menu"
+                image "symbol:info"
+            scroll id="grid" flex=1 min-height=0
+              view display="grid" width="100%" gap=2 grid-template-columns="repeat(auto-fill, minmax(min(100%, 8.125rem), 1fr))"
+                for item, i in catalog.items key=item
+                  button appearance="none" display="flex" flex-direction="column" align-items="center" justify-content="center" width="100%" min-height="7.8125rem" padding=12 box-sizing="border-box" background-color="-exact-secondary-background" press=copy(item) testId=`cell-${i}`
+                    :active
+                      background-color="-exact-tertiary-fill"
+                    text item text-align="center" overflow-wrap="anywhere"
+              column align-items="center" gap=20 padding="24px 16px 48px"
+                text "Tap to copy, paste anywhere." font="-exact-footnote" color="-exact-secondary-label" text-align="center" testId="hint"
+                text "(｡◕‿‿◕｡)" font="-exact-footnote" color="-exact-secondary-label" testId="footer-mark"
+            if copied != ""
+              text `Boom, copied. ${copied}` role="status" testId="copied" pointer-events="none" position="absolute" left=16 right=16 bottom="calc(env(safe-area-inset-bottom) + 24px)" z-index=10 padding="12px 16px" text-align="center" font="-exact-footnote" background-color="-exact-label" color="-exact-background"
+        if e.name == "menu"
+          column navigationKey=`${e.id}` navigationPresentation="modal" navigationScroll="steps" testId="menu-sheet" position="absolute" inset=0 display="flex" flex-direction="column"
+            header display="flex" align-items="center"
+              button id="close" press=back testId="close"
+                text "Close"
+              text "Asciimoji" role="heading" aria-level=2
+            scroll id="steps" flex=1 min-height=0
+              column gap=28 padding="8px 30px 32px"
+                text "1 – tap to copy" font="-exact-title3" testId="step-1"
+                text "2 – paste anywhere" font="-exact-title3" testId="step-2"
+                image "symbol:icon.mark" aria-label="Asciimoji" testId="mark" width=76 height=74

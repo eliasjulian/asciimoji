@@ -8,7 +8,6 @@
       "environment": "production",
       "distribution": "store",
       "autoIncrement": true,
-      "resourceClass": "large",
       "bun": "1.4.2",
       "env": {
         "EXACT_REF": "978154034be786846b539b9ea20b5b2baa8b16ee",

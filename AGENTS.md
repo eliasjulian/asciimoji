@@ -32,7 +32,7 @@ whether notes are sent and whether to keep a diary; under `never`, skip all of t
 
 Set `EXACT` to a checkout of https://github.com/expo/exact. The path in the generated block is where `exact new` ran, and `bun exact.mjs update` rewrites it.
 
-`app.contract` draws the wordmark, the grid, the copy confirmation, and the short copy-and-paste sheet. `app.ts` answers with the emoji list. The page colours live in `app.forma` (the black and white from the app this replaced). The wordmark and the sheet's close button are glass.
+`app.contract` draws the wordmark, the grid, the copy confirmation, and the short copy-and-paste sheet. `app.ts` answers with the emoji list. The page colours live in `app.forma` (the black and white from the app this replaced). A cell is at least 120px wide, so an iPhone shows three columns. The wordmark is flat on the page.
 
 ## Cursor Cloud specific instructions
 

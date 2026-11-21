@@ -1,0 +1,31 @@
+{
+  "cli": {
+    "version": ">= 16.0.0",
+    "appVersionSource": "remote"
+  },
+  "build": {
+    "exact": {
+      "environment": "production",
+      "distribution": "store",
+      "autoIncrement": true,
+      "resourceClass": "large",
+      "bun": "1.4.2",
+      "env": {
+        "EXACT_REF": "978154034be786846b539b9ea20b5b2baa8b16ee",
+        "EXACT_VERSION": "2.1.0",
+        "EXACT_NON_EXEMPT_ENCRYPTION": "false"
+      },
+      "ios": {
+        "config": "eas-ios.yml",
+        "image": "macos-tahoe-26.6-xcode-27.2"
+      }
+    }
+  },
+  "submit": {
+    "exact": {
+      "ios": {
+        "ascAppId": "1461670485"
+      }
+    }
+  }
+}

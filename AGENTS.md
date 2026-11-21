@@ -37,3 +37,5 @@ Set `EXACT` to a checkout of https://github.com/expo/exact. The path in the gene
 ## Cursor Cloud specific instructions
 
 Cloud agents run on Linux. With `EXACT` set, `bun exact.mjs web` serves the app and `bun exact.mjs test web` runs the contract tests in Chrome (`CHROME` selects the browser). iOS cannot be rendered here. The Android Exact host is early; drive the web host.
+
+TestFlight is an EAS custom build, profile `exact` in `eas.json`. It clones the Exact commit in `EXACT_REF`, archives with `bun exact.mjs ios --device --archive`, and `eas submit` uploads that archive to App Store Connect app `1461670485`. `EXPO_TOKEN` must already be in the environment. Do not print it.

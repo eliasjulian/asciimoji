@@ -1,0 +1,60 @@
+// Asciimoji: the wordmark on the page, a grid of kaomoji, and a short sheet
+// for how to copy. The page uses the app's own black and white. A cell is
+// 120px across at its smallest, so an iPhone shows three columns and a wider
+// window shows more. The wordmark has no fill of its own.
+shape Catalog
+  items: string[]
+  count: number
+  unique: number
+
+routes nav
+  home "/"
+    menu "/menu"
+
+component Asciimoji
+  resource catalog = loadEmoji() as shape Catalog else empty(count=0, unique=0)
+  state copied = ""
+  action copy(item: string)
+    copyText(item)
+    haptic("success")
+    copied = item
+  action dismiss
+    copied = ""
+  action openMenu
+    nav = push(nav, "/menu")
+  action follow(url: string)
+    nav = go(nav, url)
+  action back
+    nav = back(nav)
+  task clear when copied != "" key=copied
+    after(4000, dismiss)
+  view
+    main testId="root" navigationKey=`${top(nav).id}` navigationBack="close" navigate=follow width="100%" height="100%" background-color="surface.page" color="ink"
+      for e in stack(nav) key=e.id
+        if e.name == "home"
+          column navigationKey=`${e.id}` navigationScroll="grid" testId="home" position="absolute" inset=0 display="flex" flex-direction="column" background-color="surface.page" color="ink"
+            header appearance="none" display="flex" align-items="center" padding="16px 20px" padding-top="calc(env(safe-area-inset-top, 0px) + 16px)"
+              button appearance="none" press=openMenu aria-label="How to copy and paste" testId="logo" background-color="transparent"
+                image "symbol:icon.wordmark" width=180 height=35
+            scroll id="grid" flex=1 min-height=0
+              view display="grid" width="100%" gap=2 grid-template-columns="repeat(auto-fill, minmax(min(100%, 120px), 1fr))"
+                for item, i in catalog.items key=item
+                  button appearance="none" display="flex" flex-direction="column" align-items="center" justify-content="center" width="100%" min-height=125 padding="0px 6px" box-sizing="border-box" background-color="surface.cell" color="ink" press=copy(item) testId=`cell-${i}`
+                    :active
+                      background-color="surface.pressed"
+                    text item font-size=18 text-align="center" white-space="nowrap" -exact-fit="shrink"
+              column align-items="flex-start" gap=20 padding="25px 25px calc(env(safe-area-inset-bottom, 0px) + 80px)"
+                text "Tap to copy, paste anywhere." font-size=20 font-weight=500 color="ink" testId="hint"
+                text "(｡◕‿‿◕｡)" font-size=20 font-weight=500 color="ink" testId="footer-mark"
+            if copied != ""
+              text `Boom, copied. ${copied}` role="status" testId="copied" pointer-events="none" position="absolute" left=20 right=20 bottom="calc(env(safe-area-inset-bottom, 0px) + 24px)" z-index=10 padding=16 text-align="center" font-size=16 font-weight=600 background-color="ink" color="surface.page"
+        if e.name == "menu"
+          column navigationKey=`${e.id}` navigationPresentation="modal" navigationDetent="fit-content" navigationGrabber="visible" testId="menu-sheet" display="flex" flex-direction="column" color="ink"
+            header display="flex" align-items="center"
+              text "Copy and paste" role="heading" aria-level=2 flex=1
+              button id="close" press=back aria-label="Close" testId="close" buttonStyle="glass"
+                image "symbol:close"
+            column gap=24 padding="8px 30px 32px"
+              text "1 – tap to copy" font="-exact-title3" color="ink" testId="step-1"
+              text "2 – paste anywhere" font="-exact-title3" color="ink" testId="step-2"
+              image "symbol:icon.mark" aria-label="Asciimoji" testId="mark" width=38 height=37

@@ -1,0 +1,46 @@
+test "the grid lists every emoji"
+  expect state catalog.count == 60
+  expect state catalog.unique == 60
+  expect text "cell-0" == "¯＼_(ツ)_／¯"
+  expect text "cell-59" == "ʕ •́؈•̀)"
+  expect tree missing "cell-60"
+
+test "tapping an emoji copies it and says which, then the note leaves"
+  tap "cell-0"
+  expect text "copied" == "Boom, copied. ¯＼_(ツ)_／¯"
+  clock +3999
+  expect text "copied" == "Boom, copied. ¯＼_(ツ)_／¯"
+  clock +1
+  expect tree missing "copied"
+
+test "a second copy replaces the first and starts the wait again"
+  tap "cell-0"
+  clock +3000
+  tap "cell-1"
+  expect text "copied" == "Boom, copied. ʕ·͡ᴥ·ʔ"
+  clock +3999
+  expect text "copied" == "Boom, copied. ʕ·͡ᴥ·ʔ"
+  clock +1
+  expect tree missing "copied"
+
+test "the logo opens a short drawer with the two steps, and it closes to the grid"
+  tap "logo"
+  clock settle
+  expect text "step-1" == "1 – tap to copy"
+  expect text "step-2" == "2 – paste anywhere"
+  expect tree has "mark"
+  tap "close"
+  clock settle
+  expect tree missing "step-1"
+  expect text "cell-0" == "¯＼_(ツ)_／¯"
+  expect text "hint" == "Tap to copy, paste anywhere."
+
+test "a menu opened directly still closes to the grid"
+  at "/menu"
+  clock settle
+  expect text "step-1" == "1 – tap to copy"
+  expect tree has "mark"
+  tap "close"
+  clock settle
+  expect tree missing "step-1"
+  expect text "hint" == "Tap to copy, paste anywhere."

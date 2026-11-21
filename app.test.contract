@@ -23,8 +23,8 @@ test "a second copy replaces the first and starts the wait again"
   clock +1
   expect tree missing "copied"
 
-test "the menu is the two steps and the mark, and it closes to the grid"
-  tap "menu"
+test "the logo opens a short drawer with the two steps, and it closes to the grid"
+  tap "logo"
   clock settle
   expect text "step-1" == "1 – tap to copy"
   expect text "step-2" == "2 – paste anywhere"

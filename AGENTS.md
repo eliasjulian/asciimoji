@@ -32,7 +32,7 @@ whether notes are sent and whether to keep a diary; under `never`, skip all of t
 
 Set `EXACT` to a checkout of https://github.com/expo/exact. The path in the generated block is where `exact new` ran, and `bun exact.mjs update` rewrites it.
 
-`app.contract` draws the grid, the copy confirmation, and the menu sheet. `app.ts` answers with the emoji list. Leave colour and type to the platform: tiles use `-exact-secondary-background`, text uses a text style, and the header is the navigation bar.
+`app.contract` draws the wordmark, the grid, the copy confirmation, and the short copy-and-paste sheet. `app.ts` answers with the emoji list. The page colours live in `app.forma` (the black and white from the app this replaced). The wordmark and the sheet's close button are glass.
 
 ## Cursor Cloud specific instructions
 
